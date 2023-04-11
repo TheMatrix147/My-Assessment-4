@@ -1,0 +1,16 @@
+body {
+    background-color:#bb99ff;
+}
+
+
+form > * {
+    display:block;
+}
+
+input {
+    margin-bottom: 12px;
+}
+
+h3 {
+    margin-top: 50px;
+}
