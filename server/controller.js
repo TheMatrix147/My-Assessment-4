@@ -46,7 +46,7 @@ module.exports = {
             res.status(200).send(database)
         } else {
             database.splice(index, 1)
-            res.status(200).send(database)
+            res.status(200).send
         }
     }
 }
