@@ -1,33 +1,52 @@
+const complimentBtn = document.getElementById("complimentButton")
+const fortuneBtn = document.getElementById("fortuneButton")
 let postForm = document.getElementById("post-form");
 let putForm = document.getElementById("put-form");
 let deleteForm = document.getElementById("delete-form");
 let getButton = document.getElementById("get-button");
 let postNameInput = document.getElementById("post-name");
-let postPowerInput = document.getElementById("post-power");
+let postPriorityInput = document.getElementById("post-priority");
 let putNameInput = document.getElementById("put-name");
 let deleteNameInput = document.getElementById("delete-name");
+
+const getCompliment = () => {
+  axios.get("http://localhost:5507/api/compliment/")
+      .then(res => {
+          const data = res.data;
+          alert(data);
+  });
+};
+const getFortune = () => {
+  axios.get("http://localhost:5507/api/fortune/")
+      .then(res => {
+          const data = res.data;
+          alert(data);
+  });
+};
+complimentBtn.addEventListener('click', getCompliment)
+fortuneBtn.addEventListener('click', getFortune)
 
 postForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const maBod = {
+  const data = {
     name: postNameInput.value,
-    power: +postPowerInput.value
+    priority: +postPriorityInput.value
   }
 
   axios
-    .post('http://localhost:5502/person', maBod)
+    .post('http://localhost:5507/goal', data)
     .then((result) => {
-      alert('user added')
+      alert('Goal added')
       console.log(result.data)
     })
     .catch(() => {
-      console.log('backend did not work I guess')
+      console.log('Sorry, we are experiencing a problem.')
     })
 })
 
 function getClickHandler() {
-  axios.get("http://localhost:5502/people").then((result) => {
+  axios.get("http://localhost:5507/goals").then((result) => {
     console.log(result.data);
   });
 }
@@ -39,9 +58,9 @@ putForm.addEventListener("submit", (event) => {
 
     let name = putNameInput.value;
 
-    axios.put('http://localhost:5502/person?name=' + name)
+    axios.put('http://localhost:5507/goal?name=' + name)
     .then((result) => {
-        alert(name + '\'s power increased by 100')
+        alert(name + ' is now number one priority')
         console.log(result.data)
     })
     .catch((err) => {
@@ -54,9 +73,9 @@ deleteForm.addEventListener('submit', (event) => {
 
     let name = deleteNameInput.value
 
-    axios.delete('http://localhost:5502/person/jimmy'+ name)
+    axios.delete('http://localhost:5507/goal/'+ name)
     .then((result) => {
-        alert('User with name' + name + 'is no longer in database')
+        alert('Goal with name ' + name + ' is no longer in database')
         console.log(result.data)
     })
 })

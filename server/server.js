@@ -7,22 +7,27 @@ app.use(express.json())
 app.use(cors())
 
 let {
-     addPerson,
-     getPeople, 
-     updatePersonsPower, 
-     deletePerson
+     getCompliment,
+     getFortune,
+     addGoal,
+     getGoals, 
+     updateUsersPriority, 
+     deleteGoal
     } = require('./controller')
 
+app.get("/api/compliment", getCompliment);
 
-app.post('/person', addPerson )
+app.get("/api/fortune", getFortune);
 
-app.get('/people', getPeople )
+app.post('/goal', addGoal )
 
-app.put('/person', updatePersonsPower)
+app.get('/goals', getGoals )
 
-app.delete('/person/:name', deletePerson)
+app.put('/goal', updateUsersPriority)
 
-app.listen(5502, () => {
-    console.log('App is up on 5502!')
+app.delete('/goal/:name', deleteGoal)
+
+app.listen(5507, () => {
+    console.log('App is up on 5507!')
 })
 

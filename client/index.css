@@ -1,5 +1,5 @@
 body {
-    background-color:#bb99ff;
+    background-color:rgb(113, 189, 247);
 }
 
 
@@ -13,4 +13,12 @@ input {
 
 h3 {
     margin-top: 50px;
+}
+
+h2 {
+    margin-top: 50px;
+}
+
+#complimentButton {
+    margin-top: 40px
 }
